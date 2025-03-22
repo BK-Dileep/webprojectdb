@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,4 +86,93 @@
         </div>
     </form>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body { background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; height: 100%; margin: 0; background: url('back.jpg'); padding: 0; }
+        form { width: 400px; padding: 10px; background-color: #976309b8; border-radius: 5px; }
+        label { font-size: 1em; display: flex; font-weight: 500; color: #000701; align-items: center; margin-bottom: 5px; }
+        input[type="text"], input[type="number"], input[type="email"], input[type="password"], input[type="tel"], select { width: 100%; padding: 5px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 3px; }
+        .agree { cursor: pointer; }
+        .button-submit { width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; }
+        .button-submit:hover { background-color: #00b31e; }
+        h1 { text-align: center; color: rgba(23, 25, 3, 0.895); font-family: Arial, Helvetica, sans-serif; }
+    </style>
+    <script>
+        function validateForm() {
+            var firstName = document.getElementById("firstName").value;
+            var lastName = document.getElementById("lastName").value;
+            var age = document.getElementById("age").value;
+            var gender = document.getElementById("gender").value;
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+            var newPassword = document.getElementById("newPassword").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var agreeTerms = document.getElementById("agreeTerms").checked;
+
+            if (firstName === "" || lastName === "" || age === "" || gender === "" || email === "" || newPassword === "" || confirmPassword === "" || phone === "" || !agreeTerms) {
+                window.alert("Please fill in all fields and agree to the Terms & Conditions.");
+                return false;
+            }
+            if (newPassword !== confirmPassword) {
+                window.alert("Passwords do not match.");
+                return false;
+            }
+            if (parseInt(age) < 18) {
+                window.alert("You are not eligible due to age restriction.");
+                return false;
+            }
+            if (phone.length !== 10 || !phone.match(/^[0-9]{10}$/)) {
+                window.alert("Invalid phone number");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="index.php" method="POST" onsubmit="return validateForm();">
+        <h1>Registration Form</h1>
+        <br><br>
+        <div class="error">
+            <?php if (isset($_GET['error'])) echo htmlspecialchars($_GET['error']); ?>
+        </div>
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required>
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required>
+        <label for="age">Age</label>
+        <input type="number" id="age" name="age" required>
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="others">Others</option>
+        </select>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        <label for="newPassword">New Password</label>
+        <input type="password" id="newPassword" name="newPassword" required>
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <label class="agree">
+            <input type="checkbox" id="agreeTerms" name="agreeTerms">
+            I agree to the terms and conditions
+        </label><br>
+        <input type="submit" class="button-submit" value="Submit">
+        <div class="login-register">
+            <p>Already have an account? <a href="index.html" class="register-link"> Login</a></p>
+        </div>
+    </form>
+</body>
+>>>>>>> 6c877fc (Second commit)
 </html>
